@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+}
+
+body{
+    background-color: #000000;
+}
+
+
+main .player{
+    margin: auto;
+    margin-top: 15px;
+    width: 99%;
+    height: 250px;
+}
+
+/* Contêiner do carrossel */
+.carrossel-container {
+    width: 100%;
+    max-width: 500px; /* Largura máxima do carrossel */
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Faixa do carrossel */
+.carrossel {
+    display: flex;
+    transition: transform 0.3s ease-in-out; /* Animação suave ao deslizar */
+    gap: 10px; /* Espaçamento entre os itens */
+}
+
+/* Itens do carrossel */
+.carrossel-item {
+    flex: 0 0 auto; /* Garante largura fixa dos itens */
+    width: 200px; /* Define largura das imagens */
+    height: 150px; /* Define altura das imagens */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 1; /* Menor opacidade das imagens */
+}
+
+/* Imagens */
+.carrossel-item img {
+    width: auto; /* Ocupa toda a largura do item */
+    height: 80%; /* Ocupa toda a altura do item */
+    object-fit: cover; /* Ajusta sem distorcer */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transição suave */
+}
+
+/* Imagem centralizada e destacada */
+.carrossel-item img.active {
+    opacity: 1; /* Imagem ativa fica totalmente visível */
+    transform: scale(1.1); /* Destaca a imagem ativa */
+}
+
+/* Botões de navegação */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgb(255, 0, 0);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.nav-btn:hover {
+    opacity: 1;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+#player{
+    background-color: #000000;
+}
+
+.categorias{
+    margin-left: 10px;
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+}
