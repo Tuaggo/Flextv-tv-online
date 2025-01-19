@@ -1,55 +1,31 @@
-const carrossel = document.querySelector('.carrossel');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const items = document.querySelectorAll('.carrossel-item');
+const carrossels = document.querySelectorAll('.carrossel'); // Seleciona todos os carrosséis
+const prevBtns = document.querySelectorAll('.prev-btn');
+const nextBtns = document.querySelectorAll('.next-btn');
 const player = document.getElementById('player');
 
-let currentIndex = 0;
+// Função para mover o carrossel
+function moveCarousel(carousel, direction) {
+    const items = carousel.querySelectorAll('.carrossel-item');
+    const firstItem = items[0];
+    const lastItem = items[items.length - 1];
 
-// Atualiza o carrossel para mostrar o item ativo
-function updateCarrossel() {
-    const itemWidth = items[0].clientWidth + 10; // Largura da imagem + espaçamento
-    const offset = currentIndex * itemWidth;
-    carrossel.style.transform = `translateX(-${offset}px)`;
+    if (direction === 'next') {
+        carousel.appendChild(firstItem); // Move o primeiro item para o final
+    } else if (direction === 'prev') {
+        carousel.insertBefore(lastItem, items[0]); // Move o último item para o início
+    }
 }
 
-// Fecha o player quando o usuário clicar fora do iframe
-player.addEventListener('click', (e) => {
-    if (e.target === player) {
-        player.style.display = 'none';
-        player.innerHTML = ''; // Limpa o conteúdo do player
-    }
+// Adicionando evento de clique para os botões de navegação de todos os carrosséis
+prevBtns.forEach((prevBtn, index) => {
+    prevBtn.addEventListener('click', () => moveCarousel(carrossels[index], 'prev'));
 });
 
-// Adiciona o evento de clique nas imagens
-const imgs = document.querySelectorAll('.carrossel-img');
-imgs.forEach(img => {
-    img.addEventListener('click', () => {
-        const videoUrl = img.getAttribute('data-video'); // Pega o link do vídeo
-        openPlayer(videoUrl); // Abre o player com o link
-    });
+nextBtns.forEach((nextBtn, index) => {
+    nextBtn.addEventListener('click', () => moveCarousel(carrossels[index], 'next'));
 });
 
-// Botão "Anterior"
-prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
-        updateCarrossel();
-    }
-});
-
-// Botão "Próximo"
-nextBtn.addEventListener('click', () => {
-    if (currentIndex < items.length - 1) {
-        currentIndex++;
-        updateCarrossel();
-    }
-});
-
-// Atualiza o carrossel ao carregar a página
-updateCarrossel();
-
-// Função para abrir o player com o link fornecido
+// Função para abrir o player com o link do vídeo
 function openPlayer(videoUrl) {
     const playerDiv = document.getElementById('player');
     
@@ -68,70 +44,23 @@ function openPlayer(videoUrl) {
     // Adiciona o iframe na div player
     playerDiv.appendChild(iframe);
 
-    // Adiciona evento de clique para ativar tela cheia no iframe
-    iframe.addEventListener('click', function() {
-        if (iframe.requestFullscreen) {
-            iframe.requestFullscreen(); // Para navegadores que suportam
-        } else if (iframe.mozRequestFullScreen) { // Firefox
-            iframe.mozRequestFullScreen();
-        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari e Opera
-            iframe.webkitRequestFullscreen();
-        } else if (iframe.msRequestFullscreen) { // Internet Explorer / Edge
-            iframe.msRequestFullscreen();
-        }
-    });
+    // Exibe o player
+    player.style.display = 'block';
 }
 
-// Bloqueia links que tentam abrir novas guias
-document.addEventListener('DOMContentLoaded', function() {
-    // Seleciona todos os links da página
-    const links = document.querySelectorAll('a');
-
-    links.forEach(link => {
-        // Verifica se o link tem o atributo 'target="_blank"'
-        if (link.getAttribute('target') === '_blank') {
-            // Adiciona um evento para impedir o comportamento de abrir nova guia
-            link.addEventListener('click', function(event) {
-                event.preventDefault();  // Impede que o link seja aberto
-                console.log('Bloqueado abrir nova guia: ', link.href);
-            });
-        }
+// Função para adicionar evento de clique nas imagens do carrossel
+const imgs = document.querySelectorAll('.carrossel-item');
+imgs.forEach(img => {
+    img.addEventListener('click', () => {
+        const videoUrl = img.getAttribute('onclick').split('\'')[1]; // Pega o link do vídeo diretamente
+        openPlayer(videoUrl); // Abre o player com o link
     });
 });
 
-// Bloqueia links dentro do iframe para evitar abrir novas guias
-document.addEventListener('DOMContentLoaded', function() {
-    const iframe = document.querySelector('iframe');
-
-    if (iframe) {
-        // Adiciona evento de captura de cliques dentro do iframe
-        iframe.contentWindow.document.addEventListener('click', function(event) {
-            const clickedElement = event.target;
-            
-            // Verifica se o elemento clicado é um link
-            if (clickedElement.tagName.toLowerCase() === 'a') {
-                // Se o link tentar abrir em uma nova guia, bloqueia
-                if (clickedElement.getAttribute('target') === '_blank') {
-                    event.preventDefault();
-                    console.log('Bloqueado abrir nova guia dentro do iframe: ', clickedElement.href);
-                }
-            }
-        });
-    }
-});
-
-// Dentro do conteúdo do iframe
-document.addEventListener('click', function(event) {
-    const target = event.target;
-    
-    if (target.tagName.toLowerCase() === 'a' && target.getAttribute('target') === '_blank') {
-        event.preventDefault(); // Bloqueia a ação de abrir nova guia
-        window.top.postMessage({ action: 'blocked-link', url: target.href }, '*');
-    }
-});
-window.addEventListener('message', function(event) {
-    if (event.data.action === 'blocked-link') {
-        console.log('Link bloqueado no iframe:', event.data.url);
-        // Aqui você pode até mostrar um alerta ou log para ver qual link foi bloqueado
+// Fecha o player quando o usuário clicar fora do iframe
+player.addEventListener('click', (e) => {
+    if (e.target === player) {
+        player.style.display = 'none';
+        player.innerHTML = ''; // Limpa o conteúdo do player
     }
 });

@@ -11,10 +11,10 @@
 <body>
 
     <div class="bannes">
-        <div id="carouselExampleIndicators" class="carousel slide">
+        <div id="carouselExampleIndicators1" class="carousel slide">
             <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -24,17 +24,16 @@
                 <img src="img/Canais de filmes (2).png" class="d-block w-100" alt="...">
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
     </div>
-
 
     <main>
         <!-- Player onde o vídeo será carregado -->
@@ -44,14 +43,13 @@
     <div class="Canais">
         <p class="categorias">Canais Abertos</p>
         <div class="carrossel-container">
-            <button class="nav-btn prev-btn">&lt;</button>
-            <div class="carrossel">
+            <button class="nav-btn prev-btn" onclick="moveCarousel('carousel1', 'prev')">&lt;</button>
+            <div class="carrossel" id="carousel1">
                 <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/sbt.php?')">
                     <img src="https://embedmax.site/imgs-thumbs/assistir%20sbt%20ao%20vivo.webp" alt="Imagem 1">
                 </div>
-        
                 <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/tvbrasil.php?')">
-                    <img src="https://embedmax.site/imgs-thumbs/assistir%20tv%20brasil%20ao%20vivo.webp" alt="Imagem 1">
+                    <img src="https://embedmax.site/imgs-thumbs/assistir%20tv%20brasil%20ao%20vivo.webp" alt="Imagem 2">
                 </div>
                 <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/band.php?')">
                     <img src="https://embedmax.site/imgs-thumbs/assistir%20band%20ao%20vivo.webp" alt="Imagem 3">
@@ -59,37 +57,34 @@
                 <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/recordSP.php?')">
                     <img src="https://embedmax.site/imgs-thumbs/assistir%20record%20tv%20ao%20vivo.webp" alt="Imagem 4">
                 </div>
-                
             </div>
-            <button class="nav-btn next-btn">&gt;</button>
+            <button class="nav-btn next-btn" onclick="moveCarousel('carousel1', 'next')">&gt;</button>
         </div>
     </div>
-
-    <!--Canais de filmes-->
-
+    
+    <!-- Carrossel de Canais de Telecine -->
     <div class="Canais">
-        <p class="categorias">Telecine </p>
+        <p class="categorias">Canais Telecine</p>
         <div class="carrossel-container">
-            <button class="nav-btn prev-btn">&lt;</button>
-            <div class="carrossel">
+            <button class="nav-btn prev-btn" onclick="moveCarousel('carousel2', 'prev')">&lt;</button>
+            <div class="carrossel" id="carousel2">
                 <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/tcpremium.php?')">
-                    <img src="https://i.pinimg.com/736x/81/a7/dd/81a7dd209ea01306259e3d638ac602ff.jpg" alt="Imagem 1">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgptkZK_7M0Eqq21HKkuf-FaI4sBntSHNav1xEAKQHQHEkvJfXaF-Lp_k6G_nX7NCT02LtxiR0DlkbCnmXjRoo7ksbDXWhBhbNOPvQbfVAFH7yGTFVSm5ZcPj10RsrMJdokN0RppnGlaW4/s1600/tcpremium.png" alt="Imagem 1">
                 </div>
-        
-                <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/tvbrasil.php?')">
-                    <img src="https://embedmax.site/imgs-thumbs/assistir%20tv%20brasil%20ao%20vivo.webp" alt="Imagem 1">
+                <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/tcpipoca.php?')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Telecine_Pipoca.png" alt="Imagem 2">
                 </div>
-                <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/band.php?')">
-                    <img src="https://embedmax.site/imgs-thumbs/assistir%20band%20ao%20vivo.webp" alt="Imagem 3">
+                <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/tcaction.php?')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Telecine_Action.png" alt="Imagem 3">
                 </div>
-                <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/recordSP.php?')">
-                    <img src="https://embedmax.site/imgs-thumbs/assistir%20record%20tv%20ao%20vivo.webp" alt="Imagem 4">
+                <div class="carrossel-item" onclick="openPlayer('https://embedmax.site/tvl/tcfun.php?')">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Telecine_Fun.png" alt="Imagem 4">
                 </div>
-                
             </div>
-            <button class="nav-btn next-btn">&gt;</button>
+            <button class="nav-btn next-btn" onclick="moveCarousel('carousel2', 'next')">&gt;</button>
         </div>
     </div>
+    
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

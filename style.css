@@ -55,6 +55,7 @@ main .player{
     height: 80%; /* Ocupa toda a altura do item */
     object-fit: cover; /* Ajusta sem distorcer */
     transition: transform 0.3s ease, opacity 0.3s ease; /* Transição suave */
+    align-items: center;
 }
 
 /* Imagem centralizada e destacada */
